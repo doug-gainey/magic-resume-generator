@@ -1,0 +1,111 @@
+# Update the data in this file with your personal information.
+# Most of the items are optional, so if it doesn't apply, or you don't want it included, remove it or comment it out.
+# Generally required: name, contact, experience, education
+
+name:
+  first: John
+  last: Doe
+
+position: Software Developer
+
+location: New York
+
+contact:
+  email: john.doe@email.com
+  phone: 123.456.7890
+  addressLine1: 1234 Broadway
+  addressLine2: New York City, NY
+  website: johndoe.com
+  linkedin: johnnyD
+  github: johnyD
+
+picture: guy.png
+
+about: Hi, my name is John Doe. I'm just about the most boring type of person you could
+  possibly imagine. I like collecting leaves from the tree in my back yard and documenting
+  each time I eat a peanut that is non-uniform. I am not a robot. Please hire me.
+
+experience:
+  # Add more experience entries by duplicating the template
+  #   NOTE: Description can be a single entry like this:
+  #   description: This is the description.
+  #   OR a list like this:
+  #   description:
+  #     - This is the description of the first bullet.
+  #     - This is the description of the second bullet.
+  - company: Company A
+    position: Developer
+    timePeriod: since January 2016
+    description: Programming and watching cute cat videos.
+    url: https://company-a.com
+
+  - company: Company B
+    position: Frontend Developer
+    timePeriod: January 2015 - December 2015
+    description: Fulfillment of extremely important tasks.
+    url: https://company-b.com
+
+  - company: Company C
+    position: Trainee
+    timePeriod: March 2014 - December 2014
+    description: Making coffee and baking cookies.
+    url: https://company-c.com
+
+education:
+  # Add more education entries by duplicating the template
+  - school: University A, New York, USA.
+    degree: Master of Arts in Hacking and Computer Penetration
+    timePeriod: March 2012 - December 2013
+    url: https://university-a.com
+
+  - school: University B, Los Angeles, USA.
+    degree: Bachelor of Science in Engineering
+    timePeriod: March 2009 - December 2011
+    url: https://university-b.com
+
+skills:
+  # Add more skills by duplicating the template; skill level goes from 0 to 100
+  - name: HTML5
+    level: 99
+  - name: CSS3
+    level: 95
+  - name: JavaScript
+    level: 97
+  - name: Node.js
+    level: 93
+  - name: Angular 2
+    level: 60
+  - name: TypeScript
+    level: 80
+  - name: ES.Next
+    level: 70
+  - name: Docker
+    level: 99
+
+knowledge: Also proficient in Adobe Photoshop and Illustrator, grew up bilingual (English and Klingon).
+
+projects:
+  # Add more projects by duplicating the template
+  - name: Magic Resume
+    platform: VueJS + Vite
+    timePeriod: April 2024
+    description: Enter data once, and quickly generate multiple beautiful resumes!
+    url: https://github.com/gainedm/magic-resume-generator
+
+contributions:
+  # Add more contributions by duplicating the template
+  - name: Magic Resume
+    description: Enter data once, and quickly generate multiple beautiful resumes!
+    url: https://github.com/gainedm/magic-resume-generator
+
+hobbies:
+  # Add more hobbies by duplicating the template
+  - name: Offshore Fishing
+    iconClass: material-icons md-phishing
+
+  - name: NFL Football
+    iconClass: material-icons md-sports_football
+
+# Available languages:
+# ca, cn, de, el, en, es, fr, he, hu, id, it, ja, ka, ko, lt, nb-no, nl, no-nn, pl, pt, pt-br, ru, sv, th, tr, zh-tw
+lang: en

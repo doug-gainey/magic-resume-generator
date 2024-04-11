@@ -1,0 +1,75 @@
+# Update the data in this file with your personal information.
+# Most of the items are optional, so if it doesn't apply, or you don't want it included, remove it or comment it out.
+# Generally required: name, contact, experience, education
+
+name:
+  first:
+  last:
+
+position:
+
+location:
+
+contact:
+  email:
+  phone:
+  addressLine1:
+  addressLine2:
+  website:
+  linkedin:
+  github:
+
+picture: guy.png
+
+about:
+
+experience:
+  # Add more experience entries by duplicating the template
+  #   NOTE: Description can be a single entry like this:
+  #   description: This is the description.
+  #   OR a list like this:
+  #   description:
+  #     - This is the description of the first bullet.
+  #     - This is the description of the second bullet.
+  - company:
+    position:
+    timePeriod:
+    description:
+    url:
+
+education:
+  # Add more education entries by duplicating the template
+  - school:
+    degree:
+    timePeriod:
+    url:
+
+skills:
+  # Add more skills by duplicating the template; skill level goes from 0 to 100
+  - name:
+    level:
+
+knowledge:
+
+projects:
+  # Add more projects by duplicating the template
+  - name:
+    platform:
+    timePeriod:
+    description:
+    url:
+
+contributions:
+  # Add more contributions by duplicating the template
+  - name:
+    description:
+    url:
+
+hobbies:
+  # Add more hobbies by duplicating the template
+  - name:
+    iconClass:
+
+# Available languages:
+# ca, cn, de, el, en, es, fr, he, hu, id, it, ja, ka, ko, lt, nb-no, nl, no-nn, pl, pt, pt-br, ru, sv, th, tr, zh-tw
+lang: en

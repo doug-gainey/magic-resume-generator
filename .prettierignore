@@ -1,0 +1,7 @@
+build
+dist
+node_modules
+*.yml
+
+# Prettier has some css formatting issues
+**/*.less

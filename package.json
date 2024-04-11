@@ -1,0 +1,45 @@
+{
+  "name": "magic-resume-generator",
+  "private": true,
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gainedm/magic-resume-generator.git"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "lint": "npx eslint **/*.js --ignore-pattern \"dist/\" --fix && npx stylelint **/*.less --fix && npx prettier . --write",
+    "lint-ci": "npx eslint **/*.js --ignore-pattern \"dist/\" && npx stylelint **/*.less && npx prettier . --check",
+    "export": "concurrently \"npm run dev\" \"node src/export.js\" --success first --kill-others --raw",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "@fontsource/open-sans": "^5.0.27",
+    "@fontsource/open-sans-condensed": "4.5.5",
+    "@material-icons/font": "^1.0.36",
+    "material-icons": "^1.13.12",
+    "pdf-img-convert": "^1.2.1",
+    "raleway-webfont": "^3.0.1",
+    "roboto-fontface": "^0.10.0",
+    "source-sans": "^3.46.0",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@modyfi/vite-plugin-yaml": "^1.1.0",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "autoprefixer": "^10.4.19",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "less": "^4.2.0",
+    "prettier": "3.2.5",
+    "puppeteer": "^22.6.3",
+    "rxjs": "^7.8.1",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard-less": "^3.0.1",
+    "vite": "^5.2.0"
+  }
+}
