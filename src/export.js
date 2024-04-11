@@ -6,15 +6,14 @@ import puppeteer from 'puppeteer';
 import {interval} from 'rxjs';
 import {filter, first, mergeMap} from 'rxjs/operators';
 
-// TODO: Setup config for this
 const __url = 'http://localhost:5173';
 const templateDirectory = path.join(import.meta.dirname, '../src/templates');
 const pdfDirectory = path.join(import.meta.dirname, '../public/assets/pdf/');
 const previewDirectory = path.join(import.meta.dirname, '../public/assets/previews/');
 
-const clearDirectory = async function (directory) {
+const clearDirectory = async directory => {
   if (fs.existsSync(directory)) {
-    for (const file of await fs.readdirSync(directory)) {
+    for (const file of fs.readdirSync(directory)) {
       await fs.unlinkSync(path.join(directory, file));
     }
   }
@@ -44,6 +43,7 @@ const waitForServerReachable = () => {
       } catch (error) {
         console.log(error);
       }
+
       return false;
     }),
     filter(ok => !!ok)
@@ -57,6 +57,21 @@ const getTemplateNames = () => {
     .map(fileName => fileName.replace('.vue', ''));
 };
 
+const generatePDF = async templateName => {
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  await page.goto(`${__url}/resume/${templateName}`, {waitUntil: 'networkidle2'});
+
+  if (!fs.existsSync(pdfDirectory)) {
+    fs.mkdirSync(pdfDirectory);
+  }
+
+  await page.pdf({path: `${pdfDirectory + templateName}.pdf`, format: 'A4'});
+  await browser.close();
+  console.log(` - ${templateName}`);
+};
+
 const generatePDFs = async () => {
   try {
     await waitForServerReachable().pipe(first()).toPromise();
@@ -68,40 +83,29 @@ const generatePDFs = async () => {
 
     console.log('Generating pdf exports...');
     for (let i = 0; i < templateNames.length; i++) {
-      const templateName = templateNames[i];
-      const browser = await puppeteer.launch();
-      const page = await browser.newPage();
-
-      await page.goto(`${__url}/resume/${templateName}`, {waitUntil: 'networkidle2'});
-
-      if (!fs.existsSync(pdfDirectory)) {
-        fs.mkdirSync(pdfDirectory);
-      }
-
-      await page.pdf({path: `${pdfDirectory + templateName}.pdf`, format: 'A4'});
-      await browser.close();
-      console.log(` - ${templateName}`);
+      await generatePDF(templateNames[i]);
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-const generatePreview = async fileName => {
-  const templateName = fileName.replace('.pdf', '');
-  const pdfArray = await pdfConverter.convert(pdfDirectory + fileName, {width: 360, height: 504, page_numbers: [1]});
+const generatePreview = async templateName => {
+  const pdfArray = await pdfConverter.convert(`${pdfDirectory + templateName}.pdf`, {width: 360, height: 504, page_numbers: [1]});
 
   for (let i = 0; i < pdfArray.length; i++) {
     if (!fs.existsSync(previewDirectory)) {
       fs.mkdirSync(previewDirectory);
     }
 
-    fs.writeFile(`${previewDirectory}resume-${templateName}.png`, pdfArray[i], function (error) {
+    fs.writeFile(`${previewDirectory}resume-${templateName}.png`, pdfArray[i], error => {
       if (error) {
         console.error(error);
       }
     });
   }
+
+  console.log(` - ${templateName}`);
 };
 
 const generatePreviews = async () => {
@@ -111,12 +115,20 @@ const generatePreviews = async () => {
   const pdfs = fs.readdirSync(pdfDirectory);
   console.log('Generating previews...');
   for (let i = 0; i < pdfs.length; i++) {
-    console.log(` - ${pdfs[i].replace('.pdf', '')}`);
-    await generatePreview(pdfs[i]);
+    await generatePreview(pdfs[i].replace('.pdf', ''));
   }
 };
 
-await generatePDFs();
-await generatePreviews();
+if (process.env.npm_config_template) {
+  // Export a single template using: npm run export --template=template-name
+  console.log('Generating pdf export...');
+  await generatePDF(process.env.npm_config_template);
+  console.log('Generating preview...');
+  await generatePreview(process.env.npm_config_template);
+} else {
+  // Export all templates
+  await generatePDFs();
+  await generatePreviews();
+}
 
 console.log('Done.');

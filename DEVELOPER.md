@@ -24,7 +24,7 @@ All templates are located in the `src/templates` directory.
 
    Your new resume will now be reachable at http://localhost:5173/resume/template-name.
 
-4. Export resumes with `npm run export`.
+4. Export resume with `npm run export --template=template-name`.
 
 5. Add the template name to the templates array in `src/pages/Home.vue`:
 

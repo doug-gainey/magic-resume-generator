@@ -83,7 +83,7 @@
 
 5. Preview resumes with `npm run dev`. Navigate to http://localhost:5173 in your browser to see thumbnails. Click a thumbnail to see a full-page preview.
 
-6. Export resumes with `npm run export`. All resumes will be exported to the `public/assets/pdf/` folder.
+6. Export resumes with `npm run export`. You can also export a single resume using `npm run export --template=template-name`. All resumes will be exported to the `public/assets/pdf/` folder.
 
 ## Creating and Updating Templates
 
