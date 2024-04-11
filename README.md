@@ -76,10 +76,10 @@
    npm i
    ```
 
-4. Customize your data in the `data/` directory:
+4. Customize your data:
 
-   1. Update `data.yml` with your information.
-   2. Add your profile picture to the `resume/` directory and update the `picture` value in `data.yml` to match the file name.
+   1. Update `data/data.yml` with your information.
+   2. Add your profile picture to the `public/assets/pictures/` directory and update the `picture` value in `data.yml` to match the file name.
 
 5. Preview resumes with `npm run dev`. Navigate to http://localhost:5173 in your browser to see thumbnails. Click a thumbnail to see a full-page preview.
 

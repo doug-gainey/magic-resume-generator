@@ -14,8 +14,9 @@ dist-ssr
 data/*
 !data/data.yml
 !data/data-empty.yml
-!data/girl.png
-!data/guy.png
+public/assets/pictures/*
+!public/assets/pictures/girl.png
+!public/assets/pictures/guy.png
 
 # Editor directories and files
 .vscode/*

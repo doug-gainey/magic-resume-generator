@@ -14,7 +14,7 @@ export default getOptions('left-right');
         <p class="position text-center">{{ person.position }}</p>
       </div>
       <div class="picture">
-        <img v-if="person.picture" :src="'../../data/' + person.picture" alt="" />
+        <img v-if="person.picture" :src="'../../assets/pictures/' + person.picture" alt="" />
       </div>
     </header>
     <main>

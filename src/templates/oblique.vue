@@ -13,7 +13,7 @@ export default getOptions('oblique');
         <div v-if="person.position">{{ person.position }}</div>
         <div v-if="person.location">{{ person.location }}</div>
       </div>
-      <img v-if="person.picture" class="picture" :src="'../../data/' + person.picture" alt="" />
+      <img v-if="person.picture" class="picture" :src="'../../assets/pictures/' + person.picture" alt="" />
     </header>
     <main>
       <section v-if="person.about" class="about">{{ person.about }}</section>

@@ -7,7 +7,7 @@ export default getOptions('material-dark');
 <template>
   <div class="resume">
     <div class="left-column">
-      <img v-if="person.picture" class="picture" :src="'../../data/' + person.picture" alt="" />
+      <img v-if="person.picture" class="picture" :src="'../../assets/pictures/' + person.picture" alt="" />
 
       <div class="section-headline">{{ lang.contact }}</div>
       <div v-if="address" class="item">
