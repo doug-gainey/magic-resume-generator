@@ -13,6 +13,7 @@
     "lint-ci": "npx eslint **/*.js --ignore-pattern \"dist/\" && npx stylelint **/*.less && npx prettier . --check",
     "export": "concurrently \"npm run dev\" \"node src/export.js\" --success first --kill-others --raw",
     "build": "vite build",
+    "build-all": "npm run export && npm run build",
     "preview": "vite preview"
   },
   "dependencies": {
