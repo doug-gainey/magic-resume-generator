@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import fs from 'fs';
 import http from 'http';
 import path from 'path';
@@ -68,6 +69,12 @@ const generatePDF = async templateName => {
   }
 
   await page.pdf({path: `${pdfDirectory + templateName}.pdf`, format: 'A4'});
+
+  // If it's the default template, we also save it as resume.pdf
+  if (process.env.VITE_DEFAULT_TEMPLATE === templateName) {
+    await page.pdf({path: `${pdfDirectory}resume.pdf`, format: 'A4'});
+  }
+
   await browser.close();
   console.log(` - ${templateName}`);
 };
@@ -103,6 +110,15 @@ const generatePreview = async templateName => {
         console.error(error);
       }
     });
+
+    // If it's the default template, we also save it as resume.png
+    if (process.env.VITE_DEFAULT_TEMPLATE === templateName) {
+      fs.writeFile(`${previewDirectory}resume.png`, pdfArray[i], error => {
+        if (error) {
+          console.error(error);
+        }
+      });
+    }
   }
 
   console.log(` - ${templateName}`);

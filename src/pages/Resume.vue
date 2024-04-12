@@ -21,6 +21,7 @@ import ObliqueTeal from '../templates/oblique-teal.vue';
 import Professional from '../templates/professional.vue';
 import SideBar from '../templates/side-bar.vue';
 
+const defaultTemplate = import.meta.env.VITE_DEFAULT_TEMPLATE || 'base';
 const components = {
   base: Base,
   'base-blue': BaseBlue,
@@ -49,7 +50,7 @@ const components = {
 <template>
   <div class="page-wrapper">
     <div class="page">
-      <div class="toolbar">
+      <div v-if="$route.params.resumeId" class="toolbar">
         <router-link to="/">
           <i class="fa-solid fa-arrow-left"></i>
         </router-link>
@@ -58,7 +59,7 @@ const components = {
         </a>
       </div>
       <div class="page-inner">
-        <component :is="components[$route.params.resumeId]"></component>
+        <component :is="components[$route.params.resumeId || defaultTemplate]"></component>
       </div>
     </div>
   </div>
