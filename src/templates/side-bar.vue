@@ -12,7 +12,7 @@ export default getOptions('side-bar');
     </div>
     <div class="columns">
       <div class="left-col">
-        <img v-if="person.picture" class="picture" :src="'../../assets/pictures/' + person.picture" alt="" />
+        <img v-if="person.picture" class="picture" :src="hasProtocol(person.picture) ? person.picture : '../../assets/pictures/' + person.picture" alt="" />
         <div class="contact">
           <h3>{{ lang.contact }}</h3>
           <div v-if="person.contact.email" class="contact-row">

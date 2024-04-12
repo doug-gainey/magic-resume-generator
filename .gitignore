@@ -1,3 +1,16 @@
+.env
+.env.local
+dist
+node_modules
+*.tgz
+
+data/*
+!data/data.yml
+!data/data-empty.yml
+public/assets/pictures/*
+!public/assets/pictures/girl.png
+!public/assets/pictures/guy.png
+
 # Logs
 logs
 *.log
@@ -6,17 +19,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-data/*
-!data/data.yml
-!data/data-empty.yml
-public/assets/pictures/*
-!public/assets/pictures/girl.png
-!public/assets/pictures/guy.png
 
 # Editor directories and files
 .vscode/*

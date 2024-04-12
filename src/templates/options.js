@@ -1,7 +1,30 @@
 import {terms} from '../terms';
-import person from '../../data/data.yml';
+import data from '../../data/data.yml';
 
-await person;
+let person;
+if (import.meta.env.VITE_DATA_URL) {
+  try {
+    await fetchData(import.meta.env.VITE_DATA_URL);
+  } catch (error) {
+    console.log(`Fetching data failed (VITE_DATA_URL: ${import.meta.env.VITE_DATA_URL}).`);
+  }
+} else {
+  person = await data;
+}
+
+async function fetchData(url) {
+  return fetch(url)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+
+      return Promise.reject(response);
+    })
+    .then(json => {
+      person = json;
+    });
+}
 
 export default function (name) {
   return {
@@ -129,23 +152,25 @@ export default function (name) {
           return this.person.skills;
         }
 
-        const groupedSkills = this.person.skills.reduce((acc, obj) => {
+        return this.person.skills.reduce((acc, obj) => {
           const key = obj.type;
           const curGroup = acc[key] || [];
           return {...acc, [key]: [...curGroup, obj.name]};
         }, {});
-
-        return groupedSkills;
       }
     },
     methods: {
+      hasProtocol(url) {
+        return url.indexOf('//') !== -1;
+      },
+
       // Prepends url if necessary
       sanitizeUrl(url) {
         if (!url) {
           return 'javascript:void(0);';
         }
 
-        return (url.indexOf('//') === -1 ? '//' : '') + url;
+        return (this.hasProtocol(url) ? '' : '//') + url;
       },
 
       // Strips protocol and www if necessary

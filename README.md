@@ -77,9 +77,13 @@
    ```
 
 4. Customize your data:
-
-   1. Update `data/data.yml` with your information.
-   2. Add your profile picture to the `public/assets/pictures/` directory and update the `picture` value in `data.yml` to match the file name.
+   1. Option 1 - Update your data locally:
+      1. Update `data/data.yml` directly with your information.
+      2. Add your profile picture to the `public/assets/pictures/` directory and update the `picture` value in `data.yml` to match the file name.
+   2. Option 2 - Host your data remotely:
+      1. Make a copy of `.env.example` and rename to `.env`.
+      2. Update the `VITE_DATA_URL` value to a fully qualified url that returns your data in json format.
+      3. In this case, the `picture` value should also be a fully qualified url.
 
 5. Preview resumes with `npm run dev`. Navigate to http://localhost:5173 in your browser to see thumbnails. Click a thumbnail to see a full-page preview.
 

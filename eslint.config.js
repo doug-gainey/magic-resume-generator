@@ -7,7 +7,8 @@ export default [
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.mocha
+        ...globals.mocha,
+        ...globals.node
       },
       ecmaVersion: 'latest'
     },

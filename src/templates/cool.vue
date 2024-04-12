@@ -127,7 +127,7 @@ export default getOptions('cool');
       </div>
     </main>
 
-    <img v-if="person.picture" class="picture" :src="'../../assets/pictures/' + person.picture" alt="" />
+    <img v-if="person.picture" class="picture" :src="hasProtocol(person.picture) ? person.picture : '../../assets/pictures/' + person.picture" alt="" />
   </div>
 </template>
 
