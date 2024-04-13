@@ -133,29 +133,22 @@ export default function (name) {
           return this.person.skills;
         }
 
-        return this.person.skills.sort((a, b) => {
-          if (a.name.toLowerCase() < b.name.toLowerCase()) {
-            return -1;
-          }
-
-          if (a.name.toLowerCase() > b.name.toLowerCase()) {
-            return 1;
-          }
-
-          return 0;
-        });
+        return this.sort(person.skills, 'name');
       },
 
       // Groups skills by type
       groupedSkills() {
-        if (!this.sortedSkills) {
-          return this.sortedSkills;
+        const vm = this;
+
+        if (!vm.person.skills) {
+          return vm.person.skills;
         }
 
-        return this.sortedSkills.reduce((acc, obj) => {
+        return vm.person.skills.reduce((acc, obj) => {
           const key = obj.type;
           const curGroup = acc[key] || [];
-          return {...acc, [key]: [...curGroup, obj.name]};
+
+          return {...acc, [key]: vm.sort([...curGroup, obj.name])};
         }, {});
       }
     },
@@ -190,6 +183,27 @@ export default function (name) {
         }
 
         return url;
+      },
+
+      sort(array, sortBy) {
+        if (!Array.isArray(array)) {
+          return array;
+        }
+
+        return array.sort((a, b) => {
+          const aValue = sortBy ? a[sortBy] : a;
+          const bValue = sortBy ? b[sortBy] : b;
+
+          if (aValue.toLowerCase() < bValue.toLowerCase()) {
+            return -1;
+          }
+
+          if (aValue.toLowerCase() > bValue.toLowerCase()) {
+            return 1;
+          }
+
+          return 0;
+        });
       }
     }
   };
