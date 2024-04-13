@@ -148,11 +148,11 @@ export default function (name) {
 
       // Groups skills by type
       groupedSkills() {
-        if (!this.person.skills) {
-          return this.person.skills;
+        if (!this.sortedSkills) {
+          return this.sortedSkills;
         }
 
-        return this.person.skills.reduce((acc, obj) => {
+        return this.sortedSkills.reduce((acc, obj) => {
           const key = obj.type;
           const curGroup = acc[key] || [];
           return {...acc, [key]: [...curGroup, obj.name]};
