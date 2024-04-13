@@ -54,7 +54,7 @@ const components = {
         <router-link to="/">
           <i class="fa-solid fa-arrow-left"></i>
         </router-link>
-        <a :href="'/assets/pdf/' + $route.params.resumeId + '.pdf'" :download="$route.params.resumeId + '.pdf'">
+        <a :href="'/assets/pdf/resume-' + $route.params.resumeId + '.pdf'" :download="'resume-' + $route.params.resumeId + '.pdf'">
           <i class="fa-solid fa-file-pdf"></i>
         </a>
       </div>

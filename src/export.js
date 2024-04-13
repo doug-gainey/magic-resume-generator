@@ -12,6 +12,10 @@ const templateDirectory = path.join(import.meta.dirname, '../src/templates');
 const pdfDirectory = path.join(import.meta.dirname, '../public/assets/pdf/');
 const previewDirectory = path.join(import.meta.dirname, '../public/assets/previews/');
 
+const showProgress = function () {
+  return process.env.npm_config_loglevel === 'verbose' || process.env.npm_config_show_progress;
+};
+
 const clearDirectory = async directory => {
   if (fs.existsSync(directory)) {
     for (const file of fs.readdirSync(directory)) {
@@ -68,15 +72,22 @@ const generatePDF = async templateName => {
     fs.mkdirSync(pdfDirectory);
   }
 
-  await page.pdf({path: `${pdfDirectory + templateName}.pdf`, format: 'A4'});
+  const fileName = `resume-${templateName}.pdf`;
+  await page.pdf({path: `${pdfDirectory}${fileName}`, format: 'A4'});
 
   // If it's the default template, we also save it as resume.pdf
   if (process.env.VITE_DEFAULT_TEMPLATE === templateName) {
     await page.pdf({path: `${pdfDirectory}resume.pdf`, format: 'A4'});
+    if (showProgress()) {
+      console.log(` - resume.pdf`);
+    }
   }
 
   await browser.close();
-  console.log(` - ${templateName}`);
+
+  if (showProgress()) {
+    console.log(` - ${fileName}`);
+  }
 };
 
 const generatePDFs = async () => {
@@ -97,31 +108,26 @@ const generatePDFs = async () => {
   }
 };
 
-const generatePreview = async templateName => {
-  const pdfArray = await pdfConverter.convert(`${pdfDirectory + templateName}.pdf`, {width: 360, height: 504, page_numbers: [1]});
+const generatePreview = async fileName => {
+  const pdfArray = await pdfConverter.convert(`${pdfDirectory}${fileName}`, {width: 360, height: 504, page_numbers: [1]});
+
+  fileName = fileName.replace('.pdf', '.png');
 
   for (let i = 0; i < pdfArray.length; i++) {
     if (!fs.existsSync(previewDirectory)) {
       fs.mkdirSync(previewDirectory);
     }
 
-    fs.writeFile(`${previewDirectory}resume-${templateName}.png`, pdfArray[i], error => {
+    fs.writeFile(`${previewDirectory}${fileName}`, pdfArray[i], error => {
       if (error) {
         console.error(error);
       }
     });
-
-    // If it's the default template, we also save it as resume.png
-    if (process.env.VITE_DEFAULT_TEMPLATE === templateName) {
-      fs.writeFile(`${previewDirectory}resume.png`, pdfArray[i], error => {
-        if (error) {
-          console.error(error);
-        }
-      });
-    }
   }
 
-  console.log(` - ${templateName}`);
+  if (showProgress()) {
+    console.log(` - ${fileName}`);
+  }
 };
 
 const generatePreviews = async () => {
@@ -131,7 +137,7 @@ const generatePreviews = async () => {
   const pdfs = fs.readdirSync(pdfDirectory);
   console.log('Generating previews...');
   for (let i = 0; i < pdfs.length; i++) {
-    await generatePreview(pdfs[i].replace('.pdf', ''));
+    await generatePreview(pdfs[i]);
   }
 };
 
@@ -140,7 +146,7 @@ if (process.env.npm_config_template) {
   console.log('Generating pdf export...');
   await generatePDF(process.env.npm_config_template);
   console.log('Generating preview...');
-  await generatePreview(process.env.npm_config_template);
+  await generatePreview(`resume-${process.env.npm_config_template}.pdf`);
 } else {
   // Export all templates
   await generatePDFs();
