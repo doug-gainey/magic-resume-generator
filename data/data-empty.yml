@@ -48,6 +48,7 @@ skills:
   # Add more skills by duplicating the template; skill level goes from 0 to 100
   - name:
     level:
+    type:
 
 knowledge:
 
