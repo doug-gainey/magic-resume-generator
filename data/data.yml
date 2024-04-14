@@ -65,22 +65,27 @@ education:
 
 skills:
   # Add more skills by duplicating the template; skill level goes from 0 to 100
-  - name: HTML5
-    level: 99
-  - name: CSS3
-    level: 95
   - name: JavaScript
     level: 97
-  - name: Node.js
-    level: 93
-  - name: Angular 2
-    level: 60
+    type: Programming Languages
   - name: TypeScript
     level: 80
-  - name: ES.Next
-    level: 70
-  - name: Docker
+    type: Programming Languages
+  - name: HTML5
     level: 99
+    type: Web Technologies
+  - name: CSS3
+    level: 95
+    type: Web Technologies
+  - name: Angular
+    level: 60
+    type: Frameworks
+  - name: React
+    level: 70
+    type: Frameworks
+  - name: VueJS
+    level: 99
+    type: Frameworks
 
 knowledge: Also proficient in Adobe Photoshop and Illustrator, grew up bilingual (English and Klingon).
 
