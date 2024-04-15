@@ -95,13 +95,13 @@ projects:
     platform: VueJS + Vite
     timePeriod: April 2024
     description: Enter data once, and quickly generate multiple beautiful resumes!
-    url: https://github.com/gainedm/magic-resume-generator
+    url: https://github.com/doug-gainey/magic-resume-generator
 
 contributions:
   # Add more contributions by duplicating the template
   - name: Magic Resume
     description: Enter data once, and quickly generate multiple beautiful resumes!
-    url: https://github.com/gainedm/magic-resume-generator
+    url: https://github.com/doug-gainey/magic-resume-generator
 
 hobbies:
   # Add more hobbies by duplicating the template

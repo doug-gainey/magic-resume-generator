@@ -15,7 +15,7 @@ export default {
       Magic Resume Generator
       <small class="subtitle">
         <i class="fa-solid fa-code-fork"></i>
-        <a href="https://github.com/gainedm/magic-resume-generator/fork" target="_blank">Fork Magic Resume Generator on Github</a>
+        <a href="https://github.com/doug-gainey/magic-resume-generator/fork" target="_blank">Fork Magic Resume Generator on Github</a>
       </small>
     </h3>
     <div class="previews">
@@ -29,7 +29,7 @@ export default {
       </div>
     </div>
     <footer>
-      <p class="text-center">Copyright &copy; {{ new Date().getFullYear() }}, <a href="https://github.com/gainedm" target="_blank">gainedm</a>.</p>
+      <p class="text-center">Copyright &copy; {{ new Date().getFullYear() }}, <a href="https://github.com/doug-gainey" target="_blank">Doug Gainey</a>.</p>
     </footer>
   </div>
 </template>

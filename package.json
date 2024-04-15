@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gainedm/magic-resume-generator.git"
+    "url": "git+https://github.com/doug-gainey/magic-resume-generator.git"
   },
   "type": "module",
   "scripts": {

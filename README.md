@@ -61,7 +61,7 @@
 1. Clone the repository.
 
    ```
-   git clone https://github.com/gainedm/magic-resume-generator.git
+   git clone https://github.com/doug-gainey/magic-resume-generator.git
    ```
 
 2. Go to the project directory.
@@ -111,8 +111,8 @@ This project uses several open source packages:
 
 ---
 
-> GitHub [@gainedm](https://github.com/gainedm)
+> GitHub [@doug-gainey](https://github.com/doug-gainey)
 
 ## License
 
-[MIT](https://github.com/gainedm/magic-resume-generator?tab=License-1-ov-file)
+[MIT](https://github.com/doug-gainey/magic-resume-generator?tab=License-1-ov-file)
