@@ -39,7 +39,7 @@ export default getOptions('base-template');
       </section>
       <section v-if="person.experience">
         <h2 class="heading">{{ person.lang === 'en' ? 'Professional Experience' : lang.experience }}</h2>
-        <div v-for="(experience, index) in filteredExperience" :key="index" class="block" v-bind:class="{'page-break': experience.breakAfter }">
+        <div v-for="(experience, index) in filteredExperience" :key="index" class="block" v-bind:class="{'page-break': experience.breakAfter}">
           <h3 v-if="experience.company">{{ experience.company }}</h3>
           <p v-if="experience.position || experience.timePeriod" class="job-info">
             <span v-if="experience.position" class="title">{{ experience.position }} | </span>

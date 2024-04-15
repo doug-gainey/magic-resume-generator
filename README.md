@@ -77,6 +77,7 @@
    ```
 
 4. Customize your data:
+
    1. Option 1 - Update your data locally:
       1. Update `data/data.yml` directly with your information.
       2. Add your profile picture to the `public/assets/pictures/` directory and update the `picture` value in `data.yml` to match the file name.
