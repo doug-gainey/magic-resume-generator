@@ -39,7 +39,7 @@ export default getOptions('base-template');
       </section>
       <section v-if="person.experience">
         <h2 class="heading">{{ person.lang === 'en' ? 'Professional Experience' : lang.experience }}</h2>
-        <div v-for="(experience, index) in filteredExperience" :key="index" class="block">
+        <div v-for="(experience, index) in filteredExperience" :key="index" class="block" v-bind:class="{'page-break': experience.breakAfter }">
           <h3 v-if="experience.company">{{ experience.company }}</h3>
           <p v-if="experience.position || experience.timePeriod" class="job-info">
             <span v-if="experience.position" class="title">{{ experience.position }} | </span>
@@ -100,7 +100,7 @@ export default getOptions('base-template');
   --accent-text-color: rgba(0, 0, 0, 0.8);
 
   font-weight: 400;
-  font-size: 12px;
+  font-size: 10pt;
   font-family: 'Open Sans', sans-serif;
   color: #333;
 
@@ -128,13 +128,13 @@ export default getOptions('base-template');
     padding: 20px 40px;
 
     h1 {
-      font-size: 26px;
+      font-size: 20pt;
       color: var(--accent-text-color);
     }
 
     h2 {
       font-weight: 400;
-      font-size: 16px;
+      font-size: 12pt;
     }
 
     .contact-links {
@@ -142,7 +142,7 @@ export default getOptions('base-template');
       flex-wrap: wrap;
       gap: 24px;
       margin-top: 12px;
-      font-size: 14px;
+      font-size: 11pt;
       color: var(--accent-text-color);
 
       i {
@@ -160,7 +160,7 @@ export default getOptions('base-template');
     }
 
     h3 {
-      font-size: 18px;
+      font-size: 14pt;
     }
 
     section ~ section {
@@ -170,7 +170,7 @@ export default getOptions('base-template');
     .heading {
       margin: 0 -20px;
       padding: 3px 6px;
-      font-size: 16px;
+      font-size: 12pt;
       text-transform: uppercase;
       background: #d3d3d3;
     }
@@ -185,12 +185,12 @@ export default getOptions('base-template');
 
     .title {
       font-weight: 600;
-      font-size: 16px;
+      font-size: 12pt;
       color: var(--accent-text-color);
     }
 
     .detail {
-      font-size: 14px;
+      font-size: 11pt;
       color: var(--accent-text-color);
     }
 
@@ -200,6 +200,10 @@ export default getOptions('base-template');
 
     .text-italic {
       font-style: italic;
+    }
+
+    .page-break {
+      page-break-after: always;
     }
   }
 }
