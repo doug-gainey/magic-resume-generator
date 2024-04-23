@@ -29,7 +29,7 @@ export default {
       </div>
     </div>
     <footer>
-      <p class="text-center">Copyright &copy; {{ new Date().getFullYear() }}, <a href="https://github.com/doug-gainey" target="_blank">Doug Gainey</a>.</p>
+      <p class="text-center">Copyright &copy; {{ new Date().getFullYear() }}, <a href="https://douggainey.com" target="_blank">Doug Gainey</a></p>
     </footer>
   </div>
 </template>
