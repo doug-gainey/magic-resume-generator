@@ -43,5 +43,9 @@
     "stylelint": "^16.2.1",
     "stylelint-config-standard-less": "^3.0.1",
     "vite": "^5.2.0"
-  }
+  },
+  "engines": {
+    "node": ">=20 <21"
+  },
+  "engineStrict": true
 }

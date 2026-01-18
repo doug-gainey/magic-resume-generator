@@ -53,8 +53,8 @@
 
 ## Prerequisite
 
-1. [Node](https://nodejs.org/en/) (latest)
-2. [NPM](https://www.npmjs.com/) (latest)
+1. [Node](https://nodejs.org/en/) (20.x LTS)
+2. [NPM](https://www.npmjs.com/)
 
 ## How to use
 
