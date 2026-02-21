@@ -2,7 +2,7 @@ import 'dotenv/config';
 import fs from 'fs';
 import http from 'http';
 import path from 'path';
-import pdfConverter from 'pdf-img-convert';
+import {convert} from 'pdf-img-convert';
 import puppeteer from 'puppeteer';
 import {interval} from 'rxjs';
 import {filter, first, mergeMap} from 'rxjs/operators';
@@ -108,26 +108,21 @@ const generatePDFs = async () => {
   }
 };
 
-const generatePreview = async fileName => {
-  const pdfArray = await pdfConverter.convert(`${pdfDirectory}${fileName}`, {width: 360, height: 504, page_numbers: [1]});
+const generatePreview = async (fileName) => {
+  const templateName = fileName.replace(/^resume-/, '').replace(/\.pdf$/i, '');
 
-  fileName = fileName.replace('.pdf', '.png');
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
 
-  for (let i = 0; i < pdfArray.length; i++) {
-    if (!fs.existsSync(previewDirectory)) {
-      fs.mkdirSync(previewDirectory);
-    }
+  await page.goto(`${__url}/resume/${templateName}`, { waitUntil: 'networkidle2' });
+  await page.setViewport({ width: 794, height: 1123, deviceScaleFactor: 0.5 }); // ~360x504
 
-    fs.writeFile(`${previewDirectory}${fileName}`, pdfArray[i], error => {
-      if (error) {
-        console.error(error);
-      }
-    });
-  }
+  const pngName = fileName.replace(/\.pdf$/i, '.png');
+  await fs.promises.mkdir(previewDirectory, { recursive: true });
+  await page.screenshot({ path: path.join(previewDirectory, pngName), type: 'png' });
 
-  if (showProgress()) {
-    console.log(` - ${fileName}`);
-  }
+  await browser.close();
+  if (showProgress()) console.log(` - ${pngName}`);
 };
 
 const generatePreviews = async () => {
