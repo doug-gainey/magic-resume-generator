@@ -19,13 +19,13 @@ export default getOptions('base-template');
     </header>
     <main class="resume-body">
       <section v-if="person.about">
-        <h2 class="heading">{{ person.lang === 'en' ? 'Professional Profile' : lang.about }}</h2>
+        <h2 class="heading">{{ person.lang === 'en' ? 'Professional Summary' : lang.about }}</h2>
         <div v-if="person.about" class="block">
           {{ person.about }}
         </div>
       </section>
       <section v-if="groupedSkills || person.knowledge">
-        <h2 class="heading">{{ person.lang === 'en' ? 'Skills Summary' : lang.skills }}</h2>
+        <h2 class="heading">{{ person.lang === 'en' ? 'Core Competencies' : lang.skills }}</h2>
         <div class="block">
           <p v-if="person.knowledge" class="skill-description">{{ person.knowledge }}</p>
           <div v-if="person.skills" class="block">
