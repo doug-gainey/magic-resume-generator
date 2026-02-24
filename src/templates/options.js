@@ -148,7 +148,7 @@ export default function (name) {
           const key = obj.type;
           const curGroup = acc[key] || [];
 
-          return {...acc, [key]: vm.sort([...curGroup, obj.name])};
+          return {...acc, [key]: [...curGroup, obj.name]};
         }, {});
       }
     },
