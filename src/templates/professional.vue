@@ -140,9 +140,9 @@ export default getOptions('base-template');
     .contact-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 24px;
+      justify-content: space-between;
       margin-top: 12px;
-      font-size: 11pt;
+      font-size: 10pt;
       color: var(--accent-text-color);
 
       i {
@@ -202,8 +202,14 @@ export default getOptions('base-template');
       font-style: italic;
     }
 
-    .page-break {
-      page-break-after: always;
+    @media print {
+      .page-break {
+        page-break-after: always;
+
+        + div {
+          padding-top: 20px;
+        }
+      }
     }
   }
 }
