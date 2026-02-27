@@ -56,11 +56,15 @@ education:
   - school: University A, New York, USA.
     degree: Master of Arts in Hacking and Computer Penetration
     timePeriod: March 2012 - December 2013
+    minor: Computer Forensics
+    honors: Magna Cum Laude
     url: https://university-a.com
 
   - school: University B, Los Angeles, USA.
     degree: Bachelor of Science in Engineering
     timePeriod: March 2009 - December 2011
+    minor: Computer Science
+    honors: Summa Cum Laude
     url: https://university-b.com
 
 skills:

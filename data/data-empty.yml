@@ -42,6 +42,8 @@ education:
   - school:
     degree:
     timePeriod:
+    minor:
+    honors:
     url:
 
 skills:

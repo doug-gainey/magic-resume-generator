@@ -2,12 +2,11 @@ import 'dotenv/config';
 import fs from 'fs';
 import http from 'http';
 import path from 'path';
-import {convert} from 'pdf-img-convert';
 import puppeteer from 'puppeteer';
 import {interval} from 'rxjs';
 import {filter, first, mergeMap} from 'rxjs/operators';
 
-const __url = 'http://localhost:5173';
+const __url = process.env.VITE_APP_HOST || 'http://localhost:5173';
 const templateDirectory = path.join(import.meta.dirname, '../src/templates');
 const pdfDirectory = path.join(import.meta.dirname, '../public/assets/pdf/');
 const previewDirectory = path.join(import.meta.dirname, '../public/assets/previews/');

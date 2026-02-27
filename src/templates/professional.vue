@@ -57,10 +57,12 @@ export default getOptions('base-template');
         <h2 class="heading">{{ lang.education }}</h2>
         <div v-for="(education, educationIndex) in person.education" :key="educationIndex" class="block">
           <h3 v-if="education.school">{{ education.school }}</h3>
-          <p v-if="education.degree">
+          <div v-if="education.degree">
             <span class="title">{{ education.degree }}<span v-if="education.timePeriod"> | </span></span>
             <span v-if="education.timePeriod" class="detail">{{ education.timePeriod }}</span>
-          </p>
+            <div v-if="education.minor" class="detail">Minor in {{ education.minor }}</div>
+            <div v-if="education.honors">{{ education.honors }}</div>
+          </div>
         </div>
       </section>
       <section v-if="person.projects">
