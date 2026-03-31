@@ -55,10 +55,13 @@ const waitForServerReachable = () => {
 };
 
 const getTemplateNames = () => {
-  return fs
-    .readdirSync(templateDirectory)
-    .filter(file => file.endsWith('.vue') && file !== 'template.vue')
-    .map(fileName => fileName.replace('.vue', ''));
+  return (
+    fs
+      .readdirSync(templateDirectory)
+      // .filter(file => file.endsWith('.vue') && file !== 'template.vue' && file === 'professional.vue')
+      .filter(file => file === `professional.vue`) // Only export the professional template for now
+      .map(fileName => fileName.replace('.vue', ''))
+  );
 };
 
 const generatePDF = async templateName => {
@@ -107,18 +110,18 @@ const generatePDFs = async () => {
   }
 };
 
-const generatePreview = async (fileName) => {
+const generatePreview = async fileName => {
   const templateName = fileName.replace(/^resume-/, '').replace(/\.pdf$/i, '');
 
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
-  await page.goto(`${__url}/resume/${templateName}`, { waitUntil: 'networkidle2' });
-  await page.setViewport({ width: 794, height: 1123, deviceScaleFactor: 0.5 }); // ~360x504
+  await page.goto(`${__url}/resume/${templateName}`, {waitUntil: 'networkidle2'});
+  await page.setViewport({width: 794, height: 1123, deviceScaleFactor: 0.5}); // ~360x504
 
   const pngName = fileName.replace(/\.pdf$/i, '.png');
-  await fs.promises.mkdir(previewDirectory, { recursive: true });
-  await page.screenshot({ path: path.join(previewDirectory, pngName), type: 'png' });
+  await fs.promises.mkdir(previewDirectory, {recursive: true});
+  await page.screenshot({path: path.join(previewDirectory, pngName), type: 'png'});
 
   await browser.close();
   if (showProgress()) console.log(` - ${pngName}`);

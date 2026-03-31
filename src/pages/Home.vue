@@ -2,7 +2,9 @@
 export default {
   data() {
     return {
-      templates: ['base', 'base-blue', 'base-green', 'base-purple', 'base-white', 'cool', 'cool-rtl', 'cool-reverse', 'creative', 'creative-crimson', 'creative-purple', 'creative-teal', 'left-right', 'material-dark', 'material-dark-reverse', 'oblique', 'oblique-orange', 'oblique-red', 'oblique-teal', 'professional', 'side-bar']
+      //templates: ['base', 'base-blue', 'base-green', 'base-purple', 'base-white', 'cool', 'cool-rtl', 'cool-reverse', 'creative', 'creative-crimson', 'creative-purple', 'creative-teal', 'left-right', 'material-dark', 'material-dark-reverse', 'oblique', 'oblique-orange', 'oblique-red', 'oblique-teal', 'professional', 'side-bar']
+      // Only show the professional template for now
+      templates: ['professional']
     };
   }
 };
