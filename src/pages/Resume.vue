@@ -92,6 +92,7 @@ const components = {
   position: relative;
   width: 210mm;
   min-height: @page-height;
+  margin: 0 auto;
   display: block;
   page-break-after: auto;
   overflow: hidden;
