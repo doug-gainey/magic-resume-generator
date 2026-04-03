@@ -58,8 +58,8 @@ const getTemplateNames = () => {
   return (
     fs
       .readdirSync(templateDirectory)
-      // .filter(file => file.endsWith('.vue') && file !== 'template.vue' && file === 'professional.vue')
-      .filter(file => file === `professional.vue`) // Only export the professional template for now
+      .filter(file => file.endsWith('.vue') && file !== 'template.vue')
+      //.filter(file => file === `professional.vue`) // Only export the professional template for now
       .map(fileName => fileName.replace('.vue', ''))
   );
 };
