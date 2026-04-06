@@ -127,29 +127,15 @@ export default function (name) {
         });
       },
 
-      // Sorts skills alphabetically
-      sortedSkills() {
-        if (!this.person.skills) {
-          return this.person.skills;
-        }
-
-        return this.sort(person.skills, 'name');
-      },
-
-      // Groups skills by type
-      groupedSkills() {
+      // Flattens skills into a simple array
+      flattenedSkills() {
         const vm = this;
 
         if (!vm.person.skills) {
           return vm.person.skills;
         }
 
-        return vm.person.skills.reduce((acc, obj) => {
-          const key = obj.type;
-          const curGroup = acc[key] || [];
-
-          return {...acc, [key]: [...curGroup, obj.name]};
-        }, {});
+        return vm.person.skills.reduce((acc, obj) => [...acc, ...obj.skills], []);
       }
     },
     methods: {

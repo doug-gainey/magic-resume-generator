@@ -16,7 +16,7 @@ export default getOptions('creative');
       <div v-if="person.location" class="location">{{ person.location }}</div>
 
       <section v-if="person.about">
-        {{ person.about }}
+        <p v-for="(paragraph, index) in person.about" :key="index" class="block">{{ paragraph }}</p>
       </section>
 
       <section v-if="person.knowledge">
@@ -102,14 +102,14 @@ export default getOptions('creative');
         </div>
       </section>
 
-      <section v-if="sortedSkills" class="skills-section">
+      <section v-if="person.skills" class="skills-section">
         <div class="icon">
           <i class="material-icons md-done_all"></i>
           <span class="section-headline">{{ lang.skills }}</span>
         </div>
 
         <div class="section-content-grid">
-          <span v-for="skill in sortedSkills" :key="skill.name" class="squared-grid-item">{{ skill.name }}</span>
+          <span v-for="skill in flattenedSkills" :key="skill" class="squared-grid-item">{{ skill }}</span>
         </div>
       </section>
 
@@ -194,6 +194,12 @@ export default getOptions('creative');
     }
   }
 
+  .block {
+    ~ .block {
+      margin-top: 12px;
+    }
+  }
+
   .left-column {
     width: 35%;
     padding: 48px 24px;
@@ -205,7 +211,7 @@ export default getOptions('creative');
     }
 
     p {
-      margin-bottom: 0;
+      margin: 0;
     }
 
     .icon-items {
@@ -261,7 +267,6 @@ export default getOptions('creative');
       &-grid {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
         gap: 2px;
         margin-top: 10px;
         margin-bottom: 10px;

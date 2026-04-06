@@ -62,7 +62,7 @@ export default getOptions('side-bar');
         </div>
         <div v-if="person.projects" class="projects-contributions">
           <h3 class="text-center">{{ lang.projects }}</h3>
-          <div v-for="project in person.projects" :key="project.name">
+          <div v-for="project in person.projects" :key="project.name" class="block">
             <div class="row">
               <div class="name text-center">{{ project.name }}</div>
               <div v-if="project.platform" class="row text-center text-italic">
@@ -80,7 +80,7 @@ export default getOptions('side-bar');
         </div>
         <div v-if="person.contributions" class="projects-contributions">
           <h3 class="text-center">{{ lang.contributions }}</h3>
-          <div v-for="contribution in person.contributions" :key="contribution.name">
+          <div v-for="contribution in person.contributions" :key="contribution.name" class="block">
             <div class="row">
               <div v-if="contribution.name" class="name text-center">{{ contribution.name }}</div>
               <div v-if="contribution.description" class="row description">
@@ -122,8 +122,8 @@ export default getOptions('side-bar');
         <section v-if="person.skills">
           <h3>{{ lang.skills }}</h3>
           <div class="skills">
-            <div v-for="skill in person.skills" :key="skill.name" class="skill">
-              {{ skill.name }}
+            <div v-for="skill in flattenedSkills" :key="skill" class="skill">
+              {{ skill }}
             </div>
           </div>
           <span class="skills-other">{{ person.knowledge }}</span>
@@ -166,6 +166,12 @@ export default getOptions('side-bar');
 
   .columns {
     display: flex;
+  }
+
+  .block {
+    ~ .block {
+      margin-top: 24px;
+    }
   }
 
   .left-col {
@@ -216,12 +222,6 @@ export default getOptions('side-bar');
     section {
       ~ section {
         margin-top: 36px;
-      }
-    }
-
-    .block {
-      ~ .block {
-        margin-top: 24px;
       }
     }
 

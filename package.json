@@ -44,6 +44,17 @@
     "stylelint-config-standard-less": "^4.0.1",
     "vite": "^7.3.1"
   },
+  "overrides": {
+    "ajv": "^8.18.0",
+    "basic-ftp": "^5.2.0",
+    "brace-expansion": "^5.0.5",
+    "flatted": "^3.4.2",
+    "js-yaml": "^4.1.1",
+    "minimatch": "^10.2.5",
+    "picomatch": "^4.0.4",
+    "rollup": "^4.60.1",
+    "tar": "^7.5.13"
+  },
   "engines": {
     "node": ">=24"
   },

@@ -53,8 +53,8 @@ export default getOptions('base-template');
         <p v-if="person.knowledge" class="skill-description">{{ person.knowledge }}</p>
         <div v-if="person.skills" class="indent">
           <ul class="skill-list">
-            <li v-for="skill in person.skills" :key="skill.name" class="skill">
-              <span class="text-primary">{{ skill.name }}</span>
+            <li v-for="skill in flattenedSkills" :key="skill" class="skill">
+              <span class="text-primary">{{ skill }}</span>
             </li>
           </ul>
         </div>
@@ -91,7 +91,7 @@ export default getOptions('base-template');
     <div class="resume-footer resume-footer--placeholder">
       <div v-if="person.about">
         <h2>{{ lang.about }}</h2>
-        <p>{{ person.about }}</p>
+        <p v-for="(paragraph, index) in person.about" :key="index" class="block">{{ paragraph }}</p>
         <p v-if="person.hobbies" class="hobbies">
           <strong class="heading">{{ lang.hobbies }}: </strong>
           {{ person.hobbies.map(hobby => hobby.name).join(', ') }}
@@ -101,7 +101,7 @@ export default getOptions('base-template');
     <footer class="resume-footer">
       <div v-if="person.about">
         <h2>{{ lang.about }}</h2>
-        <p>{{ person.about }}</p>
+        <p v-for="(paragraph, index) in person.about" :key="index" class="block">{{ paragraph }}</p>
         <p v-if="person.hobbies" class="hobbies">
           <strong class="heading">{{ lang.hobbies }}: </strong>
           {{ person.hobbies.map(hobby => hobby.name).join(', ') }}
@@ -157,6 +157,12 @@ export default getOptions('base-template');
 
     .material-icons {
       font-size: 18px;
+    }
+  }
+
+  .block {
+    ~ .block {
+      margin-top: 12px;
     }
   }
 

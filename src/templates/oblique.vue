@@ -16,7 +16,9 @@ export default getOptions('oblique');
       <img v-if="person.picture" class="picture" :src="hasProtocol(person.picture) ? person.picture : '../../assets/pictures/' + person.picture" alt="" />
     </header>
     <main>
-      <section v-if="person.about" class="about">{{ person.about }}</section>
+      <section v-if="person.about" class="about">
+        <p v-for="(paragraph, index) in person.about" :key="index" class="block">{{ paragraph }}</p>
+      </section>
       <section v-if="person.experience">
         <h3>{{ lang.experience }}</h3>
 
@@ -80,9 +82,9 @@ export default getOptions('oblique');
       <section v-if="person.skills">
         <h3>{{ lang.skills }}</h3>
         <ul class="columns">
-          <li v-for="skill in person.skills" :key="skill.name">
+          <li v-for="skill in flattenedSkills" :key="skill">
             <i class="material-icons md-keyboard_arrow_right"></i>
-            <span class="skill">{{ skill.name }}</span>
+            <span class="skill">{{ skill }}</span>
           </li>
         </ul>
       </section>

@@ -20,7 +20,7 @@ export default getOptions('cool');
           </div>
 
           <div v-if="person.about" class="section-content section-content--plain">
-            {{ person.about }}
+            <p v-for="(paragraph, index) in person.about" :key="index" class="block">{{ paragraph }}</p>
           </div>
 
           <div v-if="person.knowledge" class="section-content section-content--plain">
@@ -28,14 +28,15 @@ export default getOptions('cool');
           </div>
         </section>
 
-        <section v-if="sortedSkills" class="section">
+        <section v-if="person.skills" class="section">
           <div class="section-headline">
             {{ lang.skills }}
           </div>
 
           <div class="section-content-grid">
-            <div v-for="skill in sortedSkills" :key="skill.name" class="grid-item">
-              <span class="squared-grid-item">{{ skill.name }}</span>
+            <div v-for="group in person.skills" :key="group.type" class="grid-item block">
+              <strong>{{ group.type }}</strong>
+              <div v-for="skill in group.skills" :key="skill" class="squared-grid-item">{{ skill }}</div>
             </div>
           </div>
         </section>
@@ -307,9 +308,6 @@ export default getOptions('cool');
   }
 
   .section-content-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: var(--justify-left-column);
     margin-top: 5px;
     margin-bottom: 5px;
   }
@@ -324,6 +322,14 @@ export default getOptions('cool');
     padding: 5px;
     border: 1px solid #fff;
     color: #fff;
+  }
+
+  .block {
+    margin: 0;
+
+    + .block {
+      margin-top: 12px;
+    }
   }
 }
 </style>

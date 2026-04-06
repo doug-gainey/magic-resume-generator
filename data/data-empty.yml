@@ -21,6 +21,7 @@ contact:
 
 picture: guy.png
 
+# The about section can be a single string or an array of paragraph strings.
 about:
 
 experience:
@@ -47,10 +48,10 @@ education:
     url:
 
 skills:
-  # Add more skills by duplicating the template; skill level goes from 0 to 100
-  - name:
-    level:
-    type:
+  # Add more skills by duplicating the template
+  - type:
+    # This is an array of skills of the same type
+    skills:
 
 knowledge:
 

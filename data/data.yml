@@ -21,9 +21,13 @@ contact:
 
 picture: guy.png
 
-about: Hi, my name is John Doe. I'm just about the most boring type of person you could
-  possibly imagine. I like collecting leaves from the tree in my back yard and documenting
-  each time I eat a peanut that is non-uniform. I am not a robot. Please hire me.
+# The about section can be a single string or an array of paragraph strings.
+about:
+  - Hi, my name is John Doe. I'm just about the most boring type of person you could
+    possibly imagine. I like collecting leaves from the tree in my back yard and documenting
+    each time I eat a peanut that is non-uniform. I am not a robot. Please hire me.
+  - I have a lot of experience doing things that are not very interesting. I am
+    a hard worker and I am very good at doing things that are not very interesting.
 
 experience:
   # Add more experience entries by duplicating the template
@@ -68,28 +72,22 @@ education:
     url: https://university-b.com
 
 skills:
-  # Add more skills by duplicating the template; skill level goes from 0 to 100
-  - name: JavaScript
-    level: 97
-    type: Programming Languages
-  - name: TypeScript
-    level: 80
-    type: Programming Languages
-  - name: HTML5
-    level: 99
-    type: Web Technologies
-  - name: CSS3
-    level: 95
-    type: Web Technologies
-  - name: Angular
-    level: 60
-    type: Frameworks
-  - name: React
-    level: 70
-    type: Frameworks
-  - name: VueJS
-    level: 99
-    type: Frameworks
+  # Add more skills by duplicating the template
+  - type: Programming Languages
+    skills:
+      - JavaScript
+      - TypeScript
+      - HTML5
+      - CSS3
+  - type: Web Technologies
+    skills:
+      - HTML5
+      - CSS3
+  - type: Frameworks
+    skills:
+      - Angular
+      - React
+      - VueJS
 
 knowledge: Also proficient in Adobe Photoshop and Illustrator, grew up bilingual (English and Klingon).
 

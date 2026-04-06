@@ -77,14 +77,25 @@ export default getOptions('material-dark');
 
       <div v-if="person.skills" class="section-headline">{{ lang.skills }}</div>
       <div v-if="person.skills" class="item skill-item">
-        <div v-for="skill in person.skills" :key="skill.name" class="skill">
-          <span>{{ skill.name }}&nbsp;</span>
-          <div class="progress">
-            <div class="determinate" :style="'width: ' + skill.level + '%;'">
-              <i class="fa-solid fa-circle"></i>
-            </div>
-          </div>
+        <div v-for="skillGroup in person.skills" :key="skillGroup.type" class="block">
+          <strong>{{ skillGroup.type }}</strong>
+          <div>{{ skillGroup.skills.join(', ') }}</div>
         </div>
+      </div>
+
+      <div v-if="person.projects" class="section-headline">{{ lang.projects }}</div>
+      <div v-if="person.projects" v-for="project in person.projects" :key="project.name" class="block">
+        <strong class="headline">{{ project.name }}</strong>
+        <div v-if="project.timePeriod" class="sub-headline">{{ project.timePeriod }}</div>
+        <p class="info">{{ project.description }}</p>
+        <a class="info" :href="sanitizeUrl(project.url)" target="_blank">{{ getUrlText(project.url) }}</a>
+      </div>
+
+      <div v-if="person.contributions" class="section-headline">{{ lang.contributions }}</div>
+      <div v-if="person.contributions" v-for="contribution in person.contributions" :key="contribution.name" class="block">
+        <strong class="headline">{{ contribution.name }}</strong>
+        <p class="info">{{ contribution.description }}</p>
+        <a class="info" :href="sanitizeUrl(contribution.url)" target="_blank">{{ getUrlText(contribution.url) }}</a>
       </div>
 
       <div v-if="person.hobbies" class="section-headline">{{ lang.hobbies }}</div>
@@ -106,7 +117,9 @@ export default getOptions('material-dark');
       <div class="title">
         <h2>{{ person.name.first }} {{ person.name.last }}</h2>
         <div v-if="person.position" class="position">{{ person.position }}</div>
-        <div v-if="person.about" class="about">{{ person.about }}</div>
+        <div v-if="person.about" class="about">
+          <p v-for="(paragraph, index) in person.about" :key="index">{{ paragraph }}</p>
+        </div>
       </div>
 
       <div v-if="person.experience" class="section-headline experience">{{ lang.experience }}</div>
@@ -130,26 +143,11 @@ export default getOptions('material-dark');
       <div v-if="person.education" v-for="(education, index) in person.education" :key="index" class="block">
         <div v-if="education.degree" class="headline">{{ education.degree }}</div>
         <p class="info">
-          {{ education.timePeriod
-          }}<span v-if="education.school"
-            >, <a :href="sanitizeUrl(education.url)" target="_blank">{{ education.school }}</a></span
+          <span v-if="education.timePeriod"> {{ education.timePeriod }}, </span
+          ><span v-if="education.school"
+            ><a :href="sanitizeUrl(education.url)" target="_blank">{{ education.school }}</a></span
           >
         </p>
-      </div>
-
-      <div v-if="person.projects" class="section-headline">{{ lang.projects }}</div>
-      <div v-if="person.projects" v-for="project in person.projects" :key="project.name" class="block">
-        <div class="headline">{{ project.name }}</div>
-        <div class="sub-headline">{{ project.timePeriod }}</div>
-        <p class="info">{{ project.description }}</p>
-        <a class="info" :href="sanitizeUrl(project.url)" target="_blank">{{ getUrlText(project.url) }}</a>
-      </div>
-
-      <div v-if="person.contributions" class="section-headline">{{ lang.contributions }}</div>
-      <div v-if="person.contributions" v-for="contribution in person.contributions" :key="contribution.name" class="block">
-        <div class="headline">{{ contribution.name }}</div>
-        <p class="info">{{ contribution.description }}</p>
-        <a class="info" :href="sanitizeUrl(contribution.url)" target="_blank">{{ getUrlText(contribution.url) }}</a>
       </div>
     </div>
   </div>
@@ -184,6 +182,14 @@ export default getOptions('material-dark');
 
   ul {
     padding-left: 20px;
+  }
+
+  p {
+    margin: 0;
+
+    + p {
+      margin-top: 12px;
+    }
   }
 
   .section-headline {
@@ -247,31 +253,20 @@ export default getOptions('material-dark');
       gap: 4px;
     }
 
-    .skill {
-      .progress {
-        position: relative;
-        height: 2px;
-        margin: 0.5rem 0 10px;
-        border-radius: 2px;
-        background-color: rgba(255, 255, 255, 0.2);
+    .block {
+      margin: 0;
 
-        .determinate {
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          background-color: #78909c;
-
-          .fa-solid,
-          .fa-brands,
-          .material-icons {
-            position: absolute;
-            top: -5px;
-            right: -2px;
-            font-size: inherit;
-            color: #fff;
-          }
-        }
+      + .block {
+        margin-top: 16px;
       }
+    }
+
+    .info {
+      margin: 0;
+    }
+
+    a.info {
+      text-decoration: underline;
     }
   }
 

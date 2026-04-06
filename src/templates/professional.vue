@@ -20,18 +20,18 @@ export default getOptions('base-template');
     <main class="resume-body">
       <section v-if="person.about">
         <h2 class="heading">{{ person.lang === 'en' ? 'Professional Summary' : lang.about }}</h2>
-        <div v-if="person.about" class="block">
-          {{ person.about }}
-        </div>
+        <p v-for="(paragraph, index) in person.about" :key="index" class="block">
+          {{ paragraph }}
+        </p>
       </section>
-      <section v-if="groupedSkills || person.knowledge">
+      <section v-if="person.skills || person.knowledge">
         <h2 class="heading">{{ person.lang === 'en' ? 'Core Competencies' : lang.skills }}</h2>
         <div class="block">
           <p v-if="person.knowledge" class="skill-description">{{ person.knowledge }}</p>
           <div v-if="person.skills" class="block">
             <ul>
-              <li v-for="(value, key) in groupedSkills" :key="key" class="skill">
-                <strong>{{ key }}:</strong> <span class="text-primary">{{ value.join(', ') }}</span>
+              <li v-for="skill in person.skills" :key="skill.type" class="skill">
+                <strong>{{ skill.type }}:</strong> <span class="text-primary">{{ skill.skills.join(', ') }}</span>
               </li>
             </ul>
           </div>

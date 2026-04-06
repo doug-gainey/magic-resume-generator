@@ -31,6 +31,59 @@ export default getOptions('left-right');
             <div v-else-if="experience.description">{{ experience.description }}</div>
           </div>
         </section>
+      </div>
+      <div class="right-column">
+        <section v-if="person.education">
+          <h3>{{ lang.education }}</h3>
+          <div v-for="(education, index) in person.education" :key="index" class="block">
+            <div v-if="education.degree" class="heading">{{ education.degree }}</div>
+            <div v-if="education.school">{{ education.school }}</div>
+          </div>
+        </section>
+        <section v-if="person.skills">
+          <h3>{{ lang.skills }}</h3>
+          <div class="skills block">
+            <div v-for="skillGroup in person.skills" :key="skillGroup.type" class="skill-block">
+              <strong>{{ skillGroup.type }}</strong>
+              <div>{{ skillGroup.skills.join(', ') }}</div>
+            </div>
+          </div>
+        </section>
+        <section v-if="person.about">
+          <h3>{{ lang.about }}</h3>
+          <p v-for="(paragraph, index) in person.about" :key="index" class="block">{{ paragraph }}</p>
+        </section>
+        <section v-if="person.knowledge">
+          <div class="block">{{ person.knowledge }}</div>
+        </section>
+        <section v-if="person.projects">
+          <h3>Projects</h3>
+          <div v-for="project in person.projects" :key="project.name" class="block">
+            <div v-if="project.name" class="heading">{{ project.name }}</div>
+            <div v-if="project.platform" class="text-italic">{{ project.platform }}</div>
+            <div v-if="project.description">{{ project.description }}</div>
+            <a v-if="project.url" :href="sanitizeUrl(project.url)" target="_blank">{{ getUrlText(project.url) }}</a>
+          </div>
+        </section>
+        <section v-if="person.contributions">
+          <h3>Contributions</h3>
+          <div v-for="contribution in person.contributions" :key="contribution.name" class="block">
+            <div v-if="contribution.name" class="heading">{{ contribution.name }}</div>
+            <div v-if="contribution.description">{{ contribution.description }}</div>
+            <a v-if="contribution.url" :href="sanitizeUrl(contribution.url)" target="_blank">{{ getUrlText(contribution.url) }}</a>
+          </div>
+        </section>
+        <section v-if="person.hobbies">
+          <h3>{{ lang.hobbies }}</h3>
+          <div class="block">
+            <div class="icon-items">
+              <div v-for="hobby in person.hobbies" :key="hobby.name">
+                <i v-if="hobby.iconClass" :class="hobby.iconClass" aria-hidden="true"></i>
+                {{ hobby.name }}
+              </div>
+            </div>
+          </div>
+        </section>
         <section>
           <h3>{{ lang.contact }}</h3>
           <div class="block icon-items">
@@ -60,61 +113,6 @@ export default getOptions('left-right');
             <div v-if="githubText">
               <i class="fa-brands fa-github" aria-hidden="true"></i>
               <a :href="contactLinks.github" target="_blank">{{ githubText }}</a>
-            </div>
-          </div>
-        </section>
-        <section v-if="person.projects">
-          <h3>Projects</h3>
-          <div v-for="project in person.projects" :key="project.name" class="block">
-            <div v-if="project.name" class="heading">{{ project.name }}</div>
-            <div v-if="project.platform" class="text-italic">{{ project.platform }}</div>
-            <div v-if="project.description">{{ project.description }}</div>
-            <a v-if="project.url" :href="sanitizeUrl(project.url)" target="_blank">{{ getUrlText(project.url) }}</a>
-          </div>
-        </section>
-        <section v-if="person.contributions">
-          <h3>Contributions</h3>
-          <div v-for="contribution in person.contributions" :key="contribution.name" class="block">
-            <div v-if="contribution.name" class="heading">{{ contribution.name }}</div>
-            <div v-if="contribution.description">{{ contribution.description }}</div>
-            <a v-if="contribution.url" :href="sanitizeUrl(contribution.url)" target="_blank">{{ getUrlText(contribution.url) }}</a>
-          </div>
-        </section>
-      </div>
-      <div class="right-column">
-        <section v-if="person.education">
-          <h3>{{ lang.education }}</h3>
-          <div v-for="(education, index) in person.education" :key="index" class="block">
-            <div v-if="education.degree" class="heading">{{ education.degree }}</div>
-            <div v-if="education.school">{{ education.school }}</div>
-          </div>
-        </section>
-        <section v-if="person.skills">
-          <h3>{{ lang.skills }}</h3>
-          <div class="skills block">
-            <div v-for="skill in person.skills" :key="skill.name" class="skill-block">
-              <div class="skill">{{ skill.name }}</div>
-              <div v-if="skill.level" class="skill-bar">
-                <div :style="'width: ' + skill.level + '%'" class="level"></div>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section v-if="person.about">
-          <h3>{{ lang.about }}</h3>
-          <div class="block">{{ person.about }}</div>
-        </section>
-        <section v-if="person.knowledge">
-          <div class="block">{{ person.knowledge }}</div>
-        </section>
-        <section v-if="person.hobbies">
-          <h3>{{ lang.hobbies }}</h3>
-          <div class="block">
-            <div class="icon-items">
-              <div v-for="hobby in person.hobbies" :key="hobby.name">
-                <i v-if="hobby.iconClass" :class="hobby.iconClass" aria-hidden="true"></i>
-                {{ hobby.name }}
-              </div>
             </div>
           </div>
         </section>
@@ -196,6 +194,7 @@ export default getOptions('left-right');
   }
 
   .block {
+    margin: 0;
     color: #616161;
 
     ~ .block {
@@ -235,26 +234,8 @@ export default getOptions('left-right');
     margin-top: 5px;
 
     .skill-block {
-      display: flex;
-      gap: 12px;
-
       .skill {
-        width: 125px;
         font-size: 15px;
-      }
-
-      .skill-bar {
-        flex: 1 1 0;
-        height: 8px;
-        margin-top: 6.5px;
-        border-radius: 3px;
-        background: #e0e0e0;
-
-        .level {
-          height: 100%;
-          border-radius: 3px;
-          background: #757575;
-        }
       }
     }
   }
